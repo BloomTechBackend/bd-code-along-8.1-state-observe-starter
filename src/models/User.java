@@ -4,23 +4,21 @@ import exceptions.BookNotFoundException;
 import exceptions.MaximumBookCheckedOutException;
 import validators.Validator;
 
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
-public class User {
+public class User implements Comparable {
 
     private final String id;
     private String name;
     private String password;
-    private Book[] books;
+    private List<Book> books;
 
     private static final int MAX_BOOKS = 10;
 
     public User(String name) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
-        this.books = new Book[MAX_BOOKS];
+        this.books = new ArrayList<>();
     }
 
     /**
@@ -59,7 +57,7 @@ public class User {
         this.name = name;
     }
 
-    public Book[] getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
@@ -69,16 +67,11 @@ public class User {
      * @throws MaximumBookCheckedOutException
      */
     public void addBook(Book book) throws MaximumBookCheckedOutException {
-        if (Arrays.stream(this.books).count() >= MAX_BOOKS) {
+        if (books.size() >= MAX_BOOKS) {
             throw new MaximumBookCheckedOutException();
         }
 
-        for (int i = 0; i < this.books.length; i++) {
-            if (this.books[i] == null) {
-                this.books[i] = book;
-                break;
-            }
-        }
+        books.add(book);
     }
 
     /**
@@ -87,13 +80,17 @@ public class User {
      * @throws BookNotFoundException
      */
     public void removeBook(Book book) throws BookNotFoundException {
-        for (int i = 0; i < this.books.length; i++) {
-            if (Objects.equals(this.books[i].getIsbn(), book.getIsbn())) {
-                this.books[i] = null;
-                return;
-            }
+        if (!books.remove(book)) {
+            throw new BookNotFoundException();
         }
+    }
 
-        throw new BookNotFoundException();
+    @Override
+    public int compareTo(Object o) {
+        User u = (User) o;
+        if (u == null) {
+            throw new ClassCastException();
+        }
+        return u.id.compareTo(this.id);
     }
 }

@@ -1,7 +1,5 @@
 package models;
 
-import enums.BookState;
-
 public class Book {
 
     private final String isbn;
@@ -11,8 +9,7 @@ public class Book {
     private final String publishedYear;
     private final String description;
     private float rating;
-    //TODO Step 1 Add state and default it to AVAILABLE
-    private BookState state;
+    //TODO Step 1.1 Add state and default it to AVAILABLE
 
     private Book(String isbn, String title, String genre, String author, String publishedYear, String description, float rating) {
         this.isbn = isbn;
@@ -22,15 +19,6 @@ public class Book {
         this.publishedYear = publishedYear;
         this.description = description;
         this.rating = rating;
-        this.state = BookState.AVAILABLE;
-    }
-
-    public BookState getState() {
-        return state;
-    }
-
-    public void setState(BookState state) {
-        this.state = state;
     }
 
     public static class Builder {

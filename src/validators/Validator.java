@@ -13,9 +13,9 @@ public class Validator {
         this.rules = rules;
     }
 
-    public boolean validate(String password) {
+    public boolean validate(String value) {
         for (Rule rule : rules) {
-            if (!rule.isValid(password)) {
+            if (!rule.isValid(value)) {
                 return false;
             }
         }
