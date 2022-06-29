@@ -1,11 +1,7 @@
 package controllers;
 
-import enums.BookState;
-import exceptions.BookNotFoundException;
-import exceptions.MaximumBookCheckedOutException;
 import models.Book;
 import models.Library;
-import models.User;
 import observer.BookStateObserver;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
@@ -15,58 +11,50 @@ import org.jfree.data.general.DefaultPieDataset;
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LibraryController {
 
     private final Library library = new Library();
-    private List<BookStateObserver> observers = new ArrayList<>();
+    //TODO Step 2.2 - Add an empty list of observers
 
     public LibraryController() {
         loadBooks("books.csv");
     }
 
     /**
-     * checks a book out if it can. The book's state should be AVAILABLE. If it's not, return false.
-     * Before the book is checked out, you should attempt to add the book to the
-     * user. If a MaximumBookCheckedOutException is thrown, return false. Upon successful check-in,
-     * the book's state should be set to CHECKED_OUT.
+     * Checks a book out if it can. The book's state should be AVAILABLE. If it's not, return false.
+     * Upon successful check-out, the book's state should be set to CHECKED_OUT.
      * @param book - the book to be checked out
-     * @param user - the user that is checking out the book.
      * @return true if the book is checked out. Otherwise, false.
      */
     //TODO Step 1.2 - Finish checkoutBook
-    //TODO Step 2.2 - Add update to observer
-    public boolean checkoutBook(Book book, User user) {
+    public boolean checkoutBook(Book book) {
         return false;
     }
 
     /**
-     * Returns the book if it can. The book's state should be CHECKOUT_OUT. If it's anything else, return false.
-     * The book should then be removed from the User. Upon successful check-in, the book's state should be set to
-     * CHECKED_IN.
+     * Returns the book if it can. The book's state should be CHECKED_OUT. If it's anything else, return false.
+     * Upon successful check-in, the book's state should be set to CHECKED_IN.
      * @param book - the book being checked in
-     * @param user - the user that the book was checked out by
      * @return true if the book was successfully checked out
      */
-    //TODO Step 1.3 - Finish returnBook
-    //TODO Step 2.3 - Add update to observer
-    public boolean returnBook(Book book, User user) {
-    return false;
+    //TODO Step 1.3 - Finish checkInBook
+    public boolean checkInBook(Book book) {
+        return false;
     }
 
     /**
      * Goes through all the books and changes any state that's CHECKED_IN to AVAILABLE.
      */
-    //TODO Step 1.3 - Finish processCheckedInBooks
+    //TODO Step 1.4 - Finish processCheckedInBooks
     public void processCheckedInBooks() {
 
     }
 
 
 
-    //TODO Step 2.1 Finish add, remove, and updateObservers
+    //TODO Step 2.3 Finish add, remove, and updateObservers
+    //TODO Step 2.4 - Add update to observer in checkoutBook, checkInBook, and processCheckedInBooks
     public void addObserver(BookStateObserver observer) {
 
     }

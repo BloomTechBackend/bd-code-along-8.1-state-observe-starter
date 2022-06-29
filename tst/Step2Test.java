@@ -6,8 +6,6 @@ import models.User;
 import observer.BookStateObserver;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class Step2Test {
@@ -20,7 +18,7 @@ public class Step2Test {
         Book book = library.getBooks()[0];
 
         library.addObserver(observer);
-        library.checkoutBook(book, user);
+        library.checkoutBook(book);
 
         assertEquals(1, user.getBooks().size());
         assertEquals(1, observer.count);
@@ -35,10 +33,9 @@ public class Step2Test {
         Book book = library.getBooks()[0];
 
         library.addObserver(observer);
-        library.checkoutBook(book, user);
-        library.returnBook(book, user);
+        library.checkoutBook(book);
+        library.checkInBook(book);
 
-        assertEquals(0, user.getBooks().size());
         assertEquals(2, observer.count);
         assertEquals(BookState.CHECKED_IN, book.getState());
 
@@ -56,12 +53,10 @@ public class Step2Test {
         Book book = library.getBooks()[0];
 
         library.addObserver(waitList);
-        library.checkoutBook(book, user);
+        library.checkoutBook(book);
         waitList.addToWaitList(book, nextUser);
-        library.returnBook(book, user);
+        library.checkInBook(book);
 
-        assertEquals(0, user.getBooks().size());
-        assertEquals(0, nextUser.getBooks().size());
         assertEquals(BookState.ON_HOLD, book.getState());
     }
 
