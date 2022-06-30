@@ -20,7 +20,6 @@ public class Step2Test {
         library.addObserver(observer);
         library.checkoutBook(book);
 
-        assertEquals(1, user.getBooks().size());
         assertEquals(1, observer.count);
         assertEquals(BookState.CHECKED_OUT, book.getState());
     }
