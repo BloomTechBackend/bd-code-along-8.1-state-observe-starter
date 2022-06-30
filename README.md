@@ -1,4 +1,4 @@
-# BD Code-Along 8.1 - State and Observer Pattern
+# BD Code-Along 8.1 - State, Observer Pattern, and Regex
 
 ## Requirements
 
