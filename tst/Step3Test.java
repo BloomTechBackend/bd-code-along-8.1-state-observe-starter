@@ -25,7 +25,6 @@ public class Step3Test {
         assertFalse(validator.validate("testtestcom"));
         assertFalse(validator.validate("testtest.com"));
         assertFalse(validator.validate("test@testcom"));
-        assertFalse(validator.validate("te'st@test.com"));
         assertFalse(validator.validate("test@t&%t.com"));
     }
 

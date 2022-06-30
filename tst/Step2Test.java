@@ -14,13 +14,11 @@ public class Step2Test {
     public void testObserversOnCheckout() {
         LibraryController library = new LibraryController();
         TestObserver observer = new TestObserver();
-        User user = new User("test user");
         Book book = library.getBooks()[0];
 
         library.addObserver(observer);
         library.checkoutBook(book);
 
-        assertEquals(1, user.getBooks().size());
         assertEquals(1, observer.count);
         assertEquals(BookState.CHECKED_OUT, book.getState());
     }
