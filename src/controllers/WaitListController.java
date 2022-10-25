@@ -18,7 +18,7 @@ public class WaitListController implements BookStateObserver {
      */
     @Override
     public void onBookStatusChanged(Book book) {
-        //TODO 2.1 - Implement this functionality
+        //TODO Step 2.1 - Implement this functionality
     }
 
 
